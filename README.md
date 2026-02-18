@@ -20,31 +20,8 @@ GTM (General Time-series Model) is a foundation model for time series analysis t
 
 GTM follows a decoder-only Transformer architecture with specialized components for time series modeling:
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                              GTM Architecture                               │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                             │
-│  Time Series Data ──► Input Embedding ──► N-Stack Decoder-only Backbone     │
-│                            ▲                                                │
-│                            │                                                │
-│                     Temporal & Fourier Attention                            │
-│                            │                                                │
-│                   ┌────────┴────────┐                                      │
-│                   │                 │                                      │
-│            Temporal Attention  Fourier Attention                            │
-│                   │                 │                                      │
-│                   └────────┬────────┘                                      │
-│                            │                                                │
-│                      Decoder Output                                        │
-│                            │                                                │
-│                            ▼                                                │
-│                      Output Projection                                     │
-│                            │                                                │
-│                            ▼                                                │
-│                       Final Output                                          │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
+<img width="755" height="528" alt="image" src="https://github.com/user-attachments/assets/d7d386eb-4832-459a-a3dd-0285d906250c" />
+
 
 ### Core Components
 
@@ -191,11 +168,6 @@ If you find this work useful, please cite our paper:
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgements
-
-This work was supported by grants from the National Natural Science Foundation of China (Nos. 92367110 and U23A20319).
-
----
 
 <p align="center">
   Made with ❤️ by the GTM Team
