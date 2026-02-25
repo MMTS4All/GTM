@@ -1,6 +1,6 @@
 # GTM: A General Time-series Model
 
-[![Paper](https://img.shields.io/badge/Paper-arXiv:2412.03068-B31B1B.svg)](https://arxiv.org/abs/2412.03068)
+[![Paper](https://img.shields.io/badge/Paper-OpenReview-B31B1B.svg)](https://openreview.net/forum?id=PWM6FERWz9)
 [![GitHub](https://img.shields.io/github/stars/MMTS4All/GTM?style=social)](https://github.com/MMTS4All/GTM)
 
 > **GTM: A General Time-series Model for Enhanced Representation Learning of Time-Series Data**  
