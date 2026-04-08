@@ -1,0 +1,2 @@
+# Ignore PyTorch model weights (.pth files)
+*.pth

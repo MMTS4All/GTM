@@ -1,0 +1,187 @@
+# Configuration file for GTM experiments
+
+experiment:
+  # Training settings
+  is_training: 1
+  task_name: 'long_term_forecast'  # Options: [long_term_forecast, pre_train, anomaly_detection]
+  model: 'GTM'
+  
+  # Dataset settings
+  data: 'ETTh1'
+  data_path: 'ETTh1.csv'
+  root_path: ''
+  features: 'M'
+  target: 'OT'
+  freq: 'h'
+  train_len: 0.7
+  
+  # Dataset to encoder input mapping
+  dataset2enc_in:
+    ETTh1: 7
+    ETTh2: 7
+    ETTm1: 7
+    ETTm2: 7
+    weather: 21
+    utsd: 1
+    public: 1
+    elc: 321
+    traffic: 862
+    AIOps: 1
+  
+  # Model architecture parameters
+  seq_len: 1440
+  pred_len: 720
+  label_len: 48
+  patch_len: 96
+  stride: 96
+  d_model: 768
+  n_heads: 8
+  d_layers: 12
+  d_ff: 32
+  c_out: 1
+  top_k: 5
+  num_kernels: 6
+  moving_avg: 25
+  factor: 3
+  dropout: 0.1
+  activation: 'gelu'
+  embed: 'timeF'
+  output_attention: False
+  
+  # Normalization settings
+  k_adaptive: False
+  individual: False
+  instance_normalization: True
+  
+  # Training parameters
+  train_epochs: 30
+  batch_size: 128
+  learning_rate: 0.00002
+  weight_decay: 0
+  patience: 5
+  lradj: 'cosine'
+  pct_start: 0.4
+  use_amp: False
+  
+  # Data loader settings
+  num_workers: 10
+  
+  # GPU settings
+  use_gpu: True
+  gpu: 0
+  use_multi_gpu: True
+  devices: '0,1,2,3,4'
+  num_gpus: 5
+  
+  # Checkpoint and logging
+  checkpoints: './checkpoints/'
+  logs_dir: './logs_new/long_term_forecast/'
+  model_id: 'weather'
+  des: 'test'
+  
+  # Pre-training settings
+  pretrain_model_path: './outputs/checkpoints/pre_train/checkpoint.pth'
+  
+  # Granularity settings
+  num_gran: 5
+  
+  # DeepSpeed settings
+  deepspeed_config: 'ds_config.json'
+  deepspeed: False
+  local_rank: -1
+  
+  # Random seed
+  random_seed: 2025
+  
+  # CUDA settings
+  cuda_devices: "0,1,2,3,4,5,6,7"
+  deepspeed_port: 29503
+  
+  # Test settings
+  test_pred_len: 96
+  test_num_gran: 5
+  test_iterations: 5
+  
+  # Log interval
+  log_interval: 300
+
+# Pre-training specific configuration
+pretrain:
+  # Training settings
+  is_training: 1
+  task_name: 'pre_train'
+  model: 'GTM'
+  
+  # Dataset settings
+  data: 'utsd'
+  root_path: './data/utsd/train'
+  features: 'M'
+  target: 'OT'
+  freq: 'h'
+  
+  # Model architecture parameters
+  seq_len: 1440
+  pred_len: 0
+  label_len: 48
+  patch_len: 96
+  stride: 96
+  d_model: 768
+  n_heads: 8
+  d_layers: 12
+  d_ff: 32
+  enc_in: 1
+  dec_in: 1
+  c_out: 1
+  top_k: 5
+  num_kernels: 6
+  moving_avg: 25
+  factor: 3
+  dropout: 0.1
+  activation: 'gelu'
+  embed: 'timeF'
+  output_attention: False
+  
+  # Normalization settings
+  individual: False
+  instance_normalization: True
+  
+  # Training parameters
+  batch_size: 1024
+  learning_rate: 0.00001
+  train_epochs: 30
+  patience: 5
+  lradj: 'cosine'
+  pct_start: 0.4
+  use_amp: False
+  
+  # Data loader settings
+  num_workers: 10
+  
+  # GPU settings
+  use_gpu: True
+  gpu: 0
+  use_multi_gpu: True
+  num_gpus: 5
+  
+  # Checkpoint and logging
+  checkpoints: './checkpoints/'
+  logs_dir: './logs_new/pre_train/'
+  model_id: 'GTM'
+  
+  # Pre-training settings
+  pretrain_model_path: ''
+  
+  # Granularity settings
+  num_gran: 5
+  
+  # DeepSpeed settings
+  deepspeed_config: 'ds_config.json'
+  deepspeed: False
+  local_rank: -1
+  
+  # CUDA settings
+  cuda_devices: "0,1,2,3,4,5,6,7"
+  deepspeed_port: 29501
+  
+  # Log interval
+  log_interval: 100
